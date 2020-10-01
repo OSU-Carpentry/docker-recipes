@@ -25,9 +25,11 @@ RUN apt-get update && \
     rm -rf /var/lib/apt/lists/*
 
 # Install RStudio
+#ENV RSTUDIO_VERSION=1.3.1093 # This one doesn't work either
+#ENV RSTUDIO_SHA256=47022541152d0b586c810ab23c36ee2fc0d7e0d1b69c554dfcd7fe00d0fb571b
 #ENV RSTUDIO_VERSION=1.3.1073 # There's currently a bug with this version
+#ENV RSTUDIO_SHA256=bd9a6b0f40886e632de01070378e7fe942ca15fff1d185e42ddab1801e9e2a75
 ENV RSTUDIO_VERSION=1.2.5001
-ENV RSTUDIO_SHA256=bd9a6b0f40886e632de01070378e7fe942ca15fff1d185e42ddab1801e9e2a75
 ENV RSTUDIO_DEB=rstudio-server-${RSTUDIO_VERSION}-amd64.deb
 ENV RSTUDIO_URL=https://download2.rstudio.org/server/bionic/amd64/${RSTUDIO_DEB}
 WORKDIR /tmp
