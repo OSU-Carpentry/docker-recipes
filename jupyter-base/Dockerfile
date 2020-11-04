@@ -37,6 +37,7 @@ RUN wget --quiet ${RSTUDIO_URL} && \
     #echo "${RSTUDIO_SHA256} *${RSTUDIO_DEB}" | sha256sum -c - && \
     gdebi --quiet --non-interactive ${RSTUDIO_DEB} && \
     rm -f ${RSTUDIO_DEB}
+RUN grep '^session-timeout-minutes=0' /etc/rstudio/rsession.conf || echo 'session-timeout-minutes=0' >> /etc/rstudio/rsession.conf
 
 USER $NB_UID
 
