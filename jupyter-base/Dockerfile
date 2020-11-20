@@ -21,6 +21,7 @@ RUN apt-get update && \
     libapparmor1 \
     lsb-release \
     libclang-dev \
+    zip unzip \
     && \
     rm -rf /var/lib/apt/lists/*
 
