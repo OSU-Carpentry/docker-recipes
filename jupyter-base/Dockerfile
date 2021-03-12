@@ -5,7 +5,7 @@
 #    Data Carpentry Ecology (R and Python)
 #    Data Carpentry Social Science (R)
 
-ARG BASE_CONTAINER=jupyter/datascience-notebook:6d42503c684f
+ARG BASE_CONTAINER=jupyter/datascience-notebook:d990a62010ae
 FROM $BASE_CONTAINER
 
 LABEL maintainer="Evan Linde <elinde@okstate.edui>" \
