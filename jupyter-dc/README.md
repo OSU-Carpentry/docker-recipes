@@ -1,6 +1,5 @@
 [![docker pulls](https://img.shields.io/docker/pulls/osucarpentry/jupyter-dc.svg)](https://hub.docker.com/r/osucarpentry/jupyter-dc/)
 [![docker stars](https://img.shields.io/docker/stars/osucarpentry/jupyter-dc.svg)](https://hub.docker.com/r/osucarpentry/jupyter-dc/)
-[![image metadata](https://images.microbadger.com/badges/image/osucarpentry/jupyter-dc.svg)](https://microbadger.com/images/osucarpentry/jupyter-dc "osucarpentry/jupyter-dc image metadata")
 
 # OSU-Carpentry Jupyter Data Carpentry
 

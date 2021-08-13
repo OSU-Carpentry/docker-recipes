@@ -1,6 +1,5 @@
 [![docker pulls](https://img.shields.io/docker/pulls/osucarpentry/jupyter-base.svg)](https://hub.docker.com/r/osucarpentry/jupyter-base/)
 [![docker stars](https://img.shields.io/docker/stars/osucarpentry/jupyter-base.svg)](https://hub.docker.com/r/osucarpentry/jupyter-base/)
-[![image metadata](https://images.microbadger.com/badges/image/osucarpentry/jupyter-base.svg)](https://microbadger.com/images/osucarpentry/jupyter-base "osucarpentry/jupyter-base image metadata")
 
 # OSU-Carpentry Jupyter Base
 
