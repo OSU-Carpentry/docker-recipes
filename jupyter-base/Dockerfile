@@ -5,7 +5,7 @@
 #    Data Carpentry Ecology (R and Python)
 #    Data Carpentry Social Science (R)
 
-ARG BASE_CONTAINER=jupyter/datascience-notebook:d990a62010ae
+ARG BASE_CONTAINER=jupyter/datascience-notebook:12ba1d59fbc3
 FROM $BASE_CONTAINER
 
 LABEL maintainer="Evan Linde <elinde@okstate.edui>" \
@@ -14,28 +14,30 @@ LABEL maintainer="Evan Linde <elinde@okstate.edui>" \
 USER root
 
 # Dependencies for RStudio
-RUN apt-get update && \
+RUN DEBIAN_FRONTENT=noninteractive \
+    apt-get update && \
+    apt-get -y dist-upgrade && \
     apt-get install -y --no-install-recommends \
     gdebi-core \
     psmisc \
     libapparmor1 \
+    libpq5 \
     lsb-release \
     libclang-dev \
     zip unzip \
     && \
+    apt-get -y autoremove && \
     rm -rf /var/lib/apt/lists/*
 
 # Install RStudio
-#ENV RSTUDIO_VERSION=1.3.1093 # This one doesn't work either
-#ENV RSTUDIO_SHA256=47022541152d0b586c810ab23c36ee2fc0d7e0d1b69c554dfcd7fe00d0fb571b
-#ENV RSTUDIO_VERSION=1.3.1073 # There's currently a bug with this version
-#ENV RSTUDIO_SHA256=bd9a6b0f40886e632de01070378e7fe942ca15fff1d185e42ddab1801e9e2a75
-ENV RSTUDIO_VERSION=1.2.5001
+ENV RSESSION_PROXY_RSTUDIO_1_4=yes
+ENV RSTUDIO_VERSION=1.4.1717
+ENV RSTUDIO_SHA256=ce2c6d5423823716bbd6c2d819812ed98b6ab3ea96bcfdbc6d310fd1c1286b17
 ENV RSTUDIO_DEB=rstudio-server-${RSTUDIO_VERSION}-amd64.deb
 ENV RSTUDIO_URL=https://download2.rstudio.org/server/bionic/amd64/${RSTUDIO_DEB}
 WORKDIR /tmp
 RUN wget --quiet ${RSTUDIO_URL} && \
-    #echo "${RSTUDIO_SHA256} *${RSTUDIO_DEB}" | sha256sum -c - && \
+    echo "${RSTUDIO_SHA256} *${RSTUDIO_DEB}" | sha256sum -c - && \
     gdebi --quiet --non-interactive ${RSTUDIO_DEB} && \
     rm -f ${RSTUDIO_DEB}
 RUN grep '^session-timeout-minutes=0' /etc/rstudio/rsession.conf || echo 'session-timeout-minutes=0' >> /etc/rstudio/rsession.conf
