@@ -14,7 +14,7 @@ RUN apt-get update && \
 
 # Install OpenRefine
 WORKDIR /opt
-ENV OPENREFINE_VERSION=3.5.0
+ENV OPENREFINE_VERSION=3.5.2
 ENV OPENREFINE_URL=https://github.com/OpenRefine/OpenRefine/releases/download/${OPENREFINE_VERSION}/openrefine-linux-${OPENREFINE_VERSION}.tar.gz
 RUN wget --quiet ${OPENREFINE_URL} && \
     tar -zxf openrefine-linux-${OPENREFINE_VERSION}.tar.gz && \
