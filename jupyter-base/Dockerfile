@@ -5,7 +5,7 @@
 #    Data Carpentry Ecology (R and Python)
 #    Data Carpentry Social Science (R)
 
-ARG BASE_CONTAINER=jupyter/datascience-notebook:92ce0af9989f
+ARG BASE_CONTAINER=jupyter/datascience-notebook:cf5a7ab55638
 FROM $BASE_CONTAINER
 
 LABEL maintainer="Evan Linde <elinde@okstate.edui>" \
@@ -32,8 +32,8 @@ RUN DEBIAN_FRONTENT=noninteractive \
 
 # Install RStudio
 ENV RSESSION_PROXY_RSTUDIO_1_4=yes
-ENV RSTUDIO_VERSION=2021.09.1-372
-ENV RSTUDIO_SHA256=c58df09468870b89f1796445853dce2dacaa0fc5b7bb1f92b036fa8da1d1f8a3
+ENV RSTUDIO_VERSION=2021.09.2-382
+ENV RSTUDIO_SHA256=4941e198d855a3d0531b6fe969db3373ee24d0bed815f276f04cc3b349a9d1bb
 ENV RSTUDIO_DEB=rstudio-server-${RSTUDIO_VERSION}-amd64.deb
 ENV RSTUDIO_URL=https://download2.rstudio.org/server/bionic/amd64/${RSTUDIO_DEB}
 WORKDIR /tmp
