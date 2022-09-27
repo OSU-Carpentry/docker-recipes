@@ -26,14 +26,12 @@ RUN conda install --quiet --yes \
     'r-raster' \
     'r-rastervis' \
     'r-remotes' \
+    'r-rgdal' \
     'r-sf' \
     && \
     conda clean --all -f -y && \
     fix-permissions "${CONDA_DIR}" && \
     fix-permissions "/home/${NB_USER}"
-
-# Install rgdal
-RUN R -e 'install.packages("rgdal", repos="https://cran.rstudio.com")'
 
 USER $NB_UID
 
