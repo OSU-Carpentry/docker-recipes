@@ -14,13 +14,14 @@ RUN apt-get update && \
 
 # Install OpenRefine
 WORKDIR /opt
-ENV OPENREFINE_VERSION=3.5.2
-ENV OPENREFINE_URL=https://github.com/OpenRefine/OpenRefine/releases/download/${OPENREFINE_VERSION}/openrefine-linux-${OPENREFINE_VERSION}.tar.gz
-RUN wget --quiet ${OPENREFINE_URL} && \
-    tar -zxf openrefine-linux-${OPENREFINE_VERSION}.tar.gz && \
+ENV OPENREFINE_VERSION=3.6.1
+ENV OPENREFINE_URL="https://oss.sonatype.org/service/local/artifact/maven/content?r=releases&g=org.openrefine&a=openrefine&v=${OPENREFINE_VERSION}&c=linux&p=tar.gz"
+RUN wget --quiet -O openrefine.tar.gz ${OPENREFINE_URL} && \
+    tar -zxf openrefine.tar.gz && \
     if [[ -f openrefine ]]; then unlink openrefine; fi && \
     ln -s openrefine-${OPENREFINE_VERSION} openrefine && \
-    rm -f openrefine-linux-${OPENREFINE_VERSION}.tar.gz
+    rm -f openrefine-linux-${OPENREFINE_VERSION}.tar.gz && \
+    unset OPENREFINE_VERSION OPENREFINE_URL
 
 USER $NB_UID
 
