@@ -14,7 +14,7 @@ RUN apt-get update && \
 
 # Install OpenRefine
 WORKDIR /opt
-ENV OPENREFINE_VERSION=3.6.1
+ENV OPENREFINE_VERSION=3.6.2
 ENV OPENREFINE_URL="https://oss.sonatype.org/service/local/artifact/maven/content?r=releases&g=org.openrefine&a=openrefine&v=${OPENREFINE_VERSION}&c=linux&p=tar.gz"
 RUN wget --quiet -O openrefine.tar.gz ${OPENREFINE_URL} && \
     tar -zxf openrefine.tar.gz && \
