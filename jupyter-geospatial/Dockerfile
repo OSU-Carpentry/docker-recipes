@@ -22,14 +22,14 @@ RUN apt-get update && \
 USER $NB_UID
 
 # Install R Geospatial packages
-RUN conda install --quiet --yes \
+RUN mamba install --quiet --yes \
     'r-raster' \
     'r-rastervis' \
     'r-remotes' \
     'r-rgdal' \
     'r-sf' \
     && \
-    conda clean --all -f -y && \
+    mamba clean --all -f -y && \
     fix-permissions "${CONDA_DIR}" && \
     fix-permissions "/home/${NB_USER}"
 
