@@ -14,8 +14,8 @@ RUN apt-get update && \
 
 # Install OpenRefine
 WORKDIR /opt
-ENV OPENREFINE_VERSION=3.6.2
-ENV OPENREFINE_URL="https://oss.sonatype.org/service/local/artifact/maven/content?r=releases&g=org.openrefine&a=openrefine&v=${OPENREFINE_VERSION}&c=linux&p=tar.gz"
+ENV OPENREFINE_VERSION=3.7.4
+ENV OPENREFINE_URL="https://github.com/OpenRefine/OpenRefine/releases/download/${OPENREFINE_VERSION}/openrefine-linux-${OPENREFINE_VERSION}.tar.gz"
 RUN wget --quiet -O openrefine.tar.gz ${OPENREFINE_URL} && \
     tar -zxf openrefine.tar.gz && \
     if [[ -f openrefine ]]; then unlink openrefine; fi && \
@@ -26,12 +26,8 @@ RUN wget --quiet -O openrefine.tar.gz ${OPENREFINE_URL} && \
 USER $NB_UID
 
 # Start OpenRefine from within Jupyter
-RUN pip install --quiet git+https://github.com/evanlinde/jupyter-openrefine-proxy
-RUN jupyter labextension install @jupyterlab/server-proxy && \
-    jupyter lab clean -y && \
-    npm cache clean --force && \
-    rm -rf "/home/${NB_USER}/.cache/yarn" && \
-    rm -rf "/home/${NB_USER}/.node-gyp" && \
+RUN pip install --quiet git+https://github.com/evanlinde/jupyter-openrefine-proxy && \
+    rm -rf "/home/${NB_USER}/.cache" && \
     fix-permissions "${CONDA_DIR}" && \
     fix-permissions "/home/${NB_USER}"
 
