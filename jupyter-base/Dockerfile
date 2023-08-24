@@ -5,10 +5,10 @@
 #    Data Carpentry Ecology (R and Python)
 #    Data Carpentry Social Science (R)
 
-ARG BASE_CONTAINER=jupyter/datascience-notebook:1ffe43816ba9
+ARG BASE_CONTAINER=jupyter/datascience-notebook:d400e383cc1d
 FROM $BASE_CONTAINER
 
-LABEL maintainer="Evan Linde <elinde@okstate.edui>" \
+LABEL maintainer="Evan Linde <elinde@okstate.edu>" \
     description="OSU-Carpentry Jupyter Base"
 
 USER root
@@ -34,8 +34,8 @@ RUN DEBIAN_FRONTENT=noninteractive \
 
 # Install RStudio
 ENV RSESSION_PROXY_RSTUDIO_1_4=yes
-ENV RSTUDIO_VERSION=2022.12.0-353
-ENV RSTUDIO_SHA256=a5aa2202786f9017a6de368a410488ea2e4fc6c739f78998977af214df0d6288
+ENV RSTUDIO_VERSION=2023.06.1-524
+ENV RSTUDIO_SHA256=208897f00b580b45c37dbb787dc482ff6d774b32c230f49578691b1a11f40c37
 ENV RSTUDIO_DEB=rstudio-server-${RSTUDIO_VERSION}-amd64.deb
 ENV RSTUDIO_URL=https://download2.rstudio.org/server/jammy/amd64/${RSTUDIO_DEB}
 WORKDIR /tmp
@@ -49,11 +49,7 @@ RUN grep '^session-timeout-minutes=0' /etc/rstudio/rsession.conf || echo 'sessio
 USER $NB_UID
 
 # Start RStudio from within Jupyter
-RUN pip install --quiet jupyter-rsession-proxy jupyterlab_latex
-RUN jupyter labextension install @jupyterlab/server-proxy && \
-    jupyter lab clean -y && \
-    npm cache clean --force && \
-    rm -rf "/home/${NB_USER}/.cache/yarn" && \
+RUN pip install --quiet jupyter-rsession-proxy jupyter-server-proxy jupyterlab_latex && \
     rm -rf "/home/${NB_USER}/.node-gyp" && \
     fix-permissions "${CONDA_DIR}" && \
     fix-permissions "/home/${NB_USER}"
