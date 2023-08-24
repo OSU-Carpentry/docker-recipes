@@ -50,10 +50,10 @@ USER $NB_UID
 
 # Start RStudio from within Jupyter
 RUN pip install --quiet jupyter-rsession-proxy jupyter-server-proxy jupyterlab_latex && \
-    rm -rf "/home/${NB_USER}/.node-gyp" && \
+    R -e "install.packages('markdown', repos='https://cran.rstudio.com')" && \
+    rm -rf "/home/${NB_USER}/.cache" && \
     fix-permissions "${CONDA_DIR}" && \
     fix-permissions "/home/${NB_USER}"
-RUN R -e "install.packages('markdown', repos='https://cran.rstudio.com')"
 
 USER $NB_UID
 
