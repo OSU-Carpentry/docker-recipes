@@ -55,6 +55,12 @@ RUN pip install --quiet jupyter-rsession-proxy jupyter-server-proxy jupyterlab_l
     fix-permissions "${CONDA_DIR}" && \
     fix-permissions "/home/${NB_USER}"
 
+# Install additional R packages
+RUN R -e "install.packages(c('ratdat'), repos='https://cran.rstudio.com')" && \
+    rm -rf "/home/${NB_USER}/.cache" && \
+    fix-permissions "${CONDA_DIR}" && \
+    fix-permissions "/home/${NB_USER}"
+
 USER $NB_UID
 
 WORKDIR $HOME
