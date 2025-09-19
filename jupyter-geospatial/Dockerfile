@@ -28,6 +28,7 @@ RUN mamba install --quiet --yes \
     'r-raster' \
     'r-rastervis' \
     'r-remotes' \
+    'r-reshape' \
     'r-rgdal' \
     'r-sf' \
     && \
