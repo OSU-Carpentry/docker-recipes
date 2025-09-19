@@ -14,7 +14,7 @@ RUN apt-get update && \
 
 # Install OpenRefine
 WORKDIR /opt
-ENV OPENREFINE_VERSION=3.8.2
+ENV OPENREFINE_VERSION=3.9.5
 ENV OPENREFINE_URL="https://github.com/OpenRefine/OpenRefine/releases/download/${OPENREFINE_VERSION}/openrefine-linux-${OPENREFINE_VERSION}.tar.gz"
 RUN wget --quiet -O openrefine.tar.gz ${OPENREFINE_URL} && \
     if [ -f ~/.wget-hsts ]; then rm -f ~/.wget-hsts; fi && \

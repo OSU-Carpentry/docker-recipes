@@ -19,6 +19,8 @@ RUN apt-get update && \
     && \
     rm -rf /var/lib/apt/lists/*
 
+RUN grep '^rsession-ld-library-path=/opt/conda/lib' /etc/rstudio/rserver.conf || echo 'rsession-ld-library-path=/opt/conda/lib' >> /etc/rstudio/rserver.conf
+
 USER $NB_UID
 
 # Install R Geospatial packages
