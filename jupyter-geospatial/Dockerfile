@@ -25,6 +25,10 @@ USER $NB_UID
 
 # Install R Geospatial packages
 RUN mamba install --quiet --yes \
+    'r-here' \
+    'r-leaflet' \
+    'r-lwgeom' \
+    'r-osmdata' \
     'r-raster' \
     'r-rastervis' \
     'r-remotes' \
